@@ -1,2 +1,3 @@
-# bash-scripts
-My Bash scripts
+# Bash scripts
+
+My Bash scripts.
