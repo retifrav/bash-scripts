@@ -1,4 +1,4 @@
-# Bash scripts
+## Bash scripts
 
 My Bash scripts.
 
@@ -11,7 +11,7 @@ My Bash scripts.
 
 <!-- /MarkdownTOC -->
 
-## lorem-ipsum
+### lorem-ipsum
 
 Lorem ipsum generator. Prints Lorem ipsum text to `./lorem-ipsum.txt` specified number of times:
 
@@ -19,7 +19,7 @@ Lorem ipsum generator. Prints Lorem ipsum text to `./lorem-ipsum.txt` specified 
 $ ./lorem-ipsum.sh -n 999
 ```
 
-## download-and-verify-archives
+### download-and-verify-archives
 
 Downloads archives from links provided in a file using `cURL` and verifies their contents against "blueprints" (*text files with contents expected to be inside each archive*) using `diff`:
 
@@ -27,7 +27,7 @@ Downloads archives from links provided in a file using `cURL` and verifies their
 $ ./download-and-verify-archives.sh -t "ACCESS-TOKEN-HERE"
 ```
 
-## temporary-file
+### temporary-file
 
 Based on <https://stackoverflow.com/a/66070270/1688203>.
 
@@ -40,7 +40,7 @@ $ less ./some.log
 
 This is supposed to be used as a part of actual scripts for "batched" logging, when several process might be writing to the same log file, so you'd need to ensure that their logs rows are not mixed together.
 
-## copy-files-with-rclone
+### copy-files-with-rclone
 
 Copies files with [rclone](https://rclone.org) from a remote server on cron schedule:
 
