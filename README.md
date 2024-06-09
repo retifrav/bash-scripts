@@ -7,6 +7,7 @@ My Bash scripts.
 - [lorem-ipsum](#lorem-ipsum)
 - [download-and-verify-archives](#download-and-verify-archives)
 - [temporary-file](#temporary-file)
+- [copy-files-with-rclone](#copy-files-with-rclone)
 
 <!-- /MarkdownTOC -->
 
@@ -38,3 +39,16 @@ $ less ./some.log
 ```
 
 This is supposed to be used as a part of actual scripts for "batched" logging, when several process might be writing to the same log file, so you'd need to ensure that their logs rows are not mixed together.
+
+## copy-files-with-rclone
+
+Copies files with [rclone](https://rclone.org) from a remote server on cron schedule:
+
+``` sh
+$ mkdir ~/scripts ~/logs
+
+$ crontab -e
+```
+``` sh
+20 * * * * ~/scripts/copy-files-with-rclone.sh >> ~/logs/copy-files-with-rclone.log 2>&1
+```
