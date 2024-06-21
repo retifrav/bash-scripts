@@ -52,3 +52,5 @@ $ crontab -e
 ``` sh
 20 * * * * ~/scripts/copy-files-with-rclone.sh >> ~/logs/copy-files-with-rclone.log 2>&1
 ```
+
+Don't forget to remove `--dry-run` from `copy` commands.
