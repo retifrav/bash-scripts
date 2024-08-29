@@ -8,6 +8,7 @@ My Bash scripts.
 - [download-and-verify-archives](#download-and-verify-archives)
 - [temporary-file](#temporary-file)
 - [copy-files-with-rclone](#copy-files-with-rclone)
+- [generate-dependencies-list-from-vcpkg](#generate-dependencies-list-from-vcpkg)
 
 <!-- /MarkdownTOC -->
 
@@ -54,3 +55,25 @@ $ crontab -e
 ```
 
 Don't forget to remove `--dry-run` from `copy` commands.
+
+### generate-dependencies-list-from-vcpkg
+
+Generates a text file with a lazy list of dependencies collected from listings in `vcpkg_installed/vcpkg/info/` folder:
+
+``` sh
+ls -L1 /path/to/some/project/build/vcpkg_installed/vcpkg/info/ | head -5
+assimp_5.3.1_myvr-arm64-osx.list
+brotli_1.1.0_myvr-arm64-osx.list
+catch2_3.5.3_myvr-arm64-osx.list
+clara_1.1.5_myvr-arm64-osx.list
+cpp-base64_2.0.8_myvr-arm64-osx.list
+
+$ ./generate-dependencies-list-from-vcpkg.sh -p /path/to/some/project/build/vcpkg_installed/vcpkg/info/
+
+$ head -5 ./3rd-party.txt
+assimp_5.3.1
+brotli_1.1.0
+catch2_3.5.3
+clara_1.1.5
+cpp-base64_2.0.8
+```
