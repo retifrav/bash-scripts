@@ -9,6 +9,7 @@ My Bash scripts.
 - [temporary-file](#temporary-file)
 - [copy-files-with-rclone](#copy-files-with-rclone)
 - [generate-dependencies-list-from-vcpkg](#generate-dependencies-list-from-vcpkg)
+- [control-raspberry-pi-desktop-with-tv-remote-via-cec](#control-raspberry-pi-desktop-with-tv-remote-via-cec)
 
 <!-- /MarkdownTOC -->
 
@@ -77,3 +78,7 @@ catch2_3.5.3
 clara_1.1.5
 cpp-base64_2.0.8
 ```
+
+### control-raspberry-pi-desktop-with-tv-remote-via-cec
+
+Controlling Raspberry Pi desktop with TV remote via CEC, more details [here](https://github.com/retifrav/bash-scripts/blob/master/control-raspberry-pi-desktop-with-tv-remote-via-cec/README.md).
