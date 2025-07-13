@@ -97,7 +97,7 @@ Try to move the mouse (*not via SSH, need to use the actual Xorg session on the 
 $ xdotool mousemove_relative -- 100 100
 ```
 
-Place the [script](https://github.com/retifrav/bash-scripts/blob/master/control-raspberry-pi-desktop-with-tv-remote-via-cec/cec.sh) to `/home/pi/programs/cec.sh` (*or wherever*). Run it and see if you can move the mouse with its directional pad:
+Place the [script](https://github.com/retifrav/bash-scripts/blob/master/control-raspberry-pi-desktop-with-tv-remote-via-cec/cec.sh) to `/home/pi/programs/cec.sh` (*or wherever*). Run it and see if you can move the mouse with the TV remote's directional pad:
 
 ``` sh
 $ cec-client | /home/pi/programs/cec.sh -d
@@ -135,7 +135,7 @@ SyslogIdentifier=cec
 WantedBy=default.target
 ```
 
-Without `DISPLAY=:0` it will be failing
+Without `DISPLAY=:0` it will be failing to perform `xdotool` commands.
 
 Enable and start the service:
 
@@ -159,3 +159,15 @@ $ cec-client | /home/pi/programs/cec.sh -d
 ```
 
 In my case of an LG Magic Remote none of the numerical buttons are supported - I simply get no events for pressing them, which is why they are commented out in the script.
+
+Here are the only buttons that do get registered via CEC:
+
+![](./img/lg-magic-remote.png)
+
+And [LG ThinQ](https://apps.apple.com/us/app/lg-thinq/id993504342) application adds a little bit more:
+
+- `play`/`pause`
+- `Fast forward` (*note the capital `F`*)
+- `rewind`
+
+but of course using an application is not as convenient as using a TV remote, so these can basically be ignored.
