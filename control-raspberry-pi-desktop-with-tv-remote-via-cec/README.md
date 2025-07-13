@@ -15,17 +15,66 @@ It is possible to emulate user input (*mouse and keyboard*) on a Raspberry Pi de
 $ sudo apt install cec-utils xdotool
 ```
 
-Try to move the mouse (*not via SSH, need to use the actual Xorg session on the device*):
+Check what you have on CEC:
 
 ``` sh
-$ xdotool mousemove_relative -- 100 100
+$ echo scan | cec-client -s -d 1
+opening a connection to the CEC adapter...
+requesting CEC bus information ...
+CEC bus information
+===================
+device #0: TV
+address:       0.0.0.0
+active source: no
+vendor:        LG
+osd string:    TV
+CEC version:   1.3a
+power status:  on
+language:      eng
+
+
+device #1: Recorder 1
+address:       1.0.0.0
+active source: no
+vendor:        LG
+osd string:    Kodi
+CEC version:   1.3a
+power status:  unknown
+language:      eng
+
+
+device #2: Recorder 2
+address:       2.0.0.0
+active source: no
+vendor:        LG
+osd string:    CECTester
+CEC version:   1.3a
+power status:  on
+language:      eng
+
+
+device #4: Playback 1
+address:       3.0.0.0
+active source: no
+vendor:        Apple
+osd string:    some room
+CEC version:   2.0
+power status:  standby
+language:      ???
+
+
+currently active source: unknown (-1)
 ```
+
+You don't really need to know any information about those for the purpose of emulating user input with a TV remote, but it is useful to know what devices you have. In my case the `device #2` is my Raspberry Pi, on which I executed this command.
 
 Check that you do in fact have CEC supported, press some buttons on your TV remote while this is running:
 
 ``` sh
 $ cec-client
 ```
+
+and search for `key pressed` and `key released` in the output.
 
 Switch to Xorg from Wayland:
 
@@ -41,6 +90,12 @@ W1 X11
 ![](./img/raspi-config-x11.png)
 
 and reboot.
+
+Try to move the mouse (*not via SSH, need to use the actual Xorg session on the device*):
+
+``` sh
+$ xdotool mousemove_relative -- 100 100
+```
 
 Place the [script](https://github.com/retifrav/bash-scripts/blob/master/control-raspberry-pi-desktop-with-tv-remote-via-cec/cec.sh) to `/home/pi/programs/cec.sh` (*or wherever*). Run it and see if you can move the mouse with its directional pad:
 

@@ -25,16 +25,16 @@ function keychar {
 strlastkey=''
 intkeychar=0
 intmsbetweenkeys=2000 # two presses of a key sooner that this makes it delete previous key and write the next one (a->b->c->1->a->...)
-intmousestartspeed=10 # mouse starts moving at this speed (pixels per key press)
-intmouseacc=10        # added to the mouse speed for each key press (while holding down key, more key presses are sent from the remote)
-intmousespeed=10
+intmousestartspeed=15 # mouse starts moving at this speed (pixels per key press)
+intmouseacc=15        # added to the mouse speed for each key press (while holding down key, more key presses are sent from the remote)
+intmousespeed=15
 lasttimestamp=0
 
 debugMode=0
 
 while getopts "d" opt; do
   case $opt in
-    f)
+    d)
         debugMode=1
         ;;
     \?)
@@ -56,7 +56,7 @@ do
         #fi
 
         if [ $datdiff -gt 5 ]; then # we ignore duplicate key pressed messages (time stamps less than Xms diff)
-            strkey=${oneline#*]	key pressed: }
+            strkey=${oneline#*]	key pressed: } # it is important to have exactly the TAB symbol after the `]`
             strkey=${strkey%% (*}
             #echo $strkey
 
@@ -126,10 +126,12 @@ do
                     xdotool key 'Right' # arrow key right
                     ;;
                 'channel up')
-                    xdotool click 4 # mouse scroll up
+                    #xdotool click 4 # mouse scroll up
+                    xdotool key 'Ctrl+Tab'
                     ;;
                 'channel down')
-                    xdotool click 5 # mouse scroll down
+                    #xdotool click 5 # mouse scroll down
+                    xdotool key 'Ctrl+Shift+Tab'
                     ;;
                 #'setup menu')
                 #    xdotool click 3 # right mouse button click and move a bit right
@@ -198,14 +200,18 @@ do
     fi
 
     if [ "${oneline:28:13}" == 'key released:' ]; then
-        strkey=${oneline#*]	key released: }
+        strkey=${oneline#*]	key released: } # it is important to have exactly the TAB symbol after the `]`
         strkey=${strkey%% (*}
 
-        if [ $debugMode == 1 ]; then
-            echo 'Process key released:' $strkey
-        fi
+        #if [ $debugMode == 1 ]; then
+        #    echo 'Process key released:' $strkey
+        #fi
 
         # process key releases here
+        #
+        # sadly, directional pad keys get release right after being pressed
+        # even if you haven't actually released it and keep holding it,
+        # so this logic of accelerating the mouse movement does not work
         case "$strkey" in
             'up')
                 intmousespeed=$intmousestartspeed # reset mouse speed
