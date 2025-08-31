@@ -10,6 +10,7 @@ My Bash scripts.
 - [copy-files-with-rclone](#copy-files-with-rclone)
 - [generate-dependencies-list-from-vcpkg](#generate-dependencies-list-from-vcpkg)
 - [control-raspberry-pi-desktop-with-tv-remote-via-cec](#control-raspberry-pi-desktop-with-tv-remote-via-cec)
+- [navicat-reset-trial](#navicat-reset-trial)
 
 <!-- /MarkdownTOC -->
 
@@ -82,3 +83,16 @@ cpp-base64_2.0.8
 ### control-raspberry-pi-desktop-with-tv-remote-via-cec
 
 Controlling Raspberry Pi desktop with TV remote via CEC, more details [here](https://github.com/retifrav/bash-scripts/blob/master/control-raspberry-pi-desktop-with-tv-remote-via-cec/README.md).
+
+### navicat-reset-trial
+
+Resetting [Navicat Premium](https://navicat.com/en/products/navicat-premium) trial (*on Mac OS*), because no one has 800 USD to pay for the license:
+
+``` sh
+$ ./navicat-reset-trial.sh
+Found Navicat folder, deleting it
+Found the preferences file: /Users/USERNAME/Library/Preferences/com.navicat.NavicatPremium.plist
+Got the trial key: THE-KEY-VALUE
+```
+
+Original author is [1monday](https://appstorrent.ru/802-navicat-premium.html#findcomment158332).
